@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0d0b07;
+  --color-bg-card: #131110;
+  --color-bg-elevated: #1a1714;
+  --color-bg-input: #100e0b;
+  --color-border: #252118;
+  --color-border-light: #1c1914;
+  --color-border-focus: #3d3526;
+  --color-gold: #D4AF37;
+  --color-gold-dim: #b8962e;
+  --color-gold-soft: rgba(212, 175, 55, 0.08);
+  --color-gold-text: #e8c94a;
+  --color-text-primary: #ede8df;
+  --color-text-secondary: #7d766c;
+  --color-text-muted: #504b44;
+  --color-text-faint: #332f2a;
+  --color-red: #a93226;
+  --color-red-soft: #d94435;
+  --color-green: #4caf50;
+  --color-blue: #5b8fb9;
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-quote: 'Cormorant Garamond', Georgia, serif;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+}
+
+body {
+  min-height: 100%;
+  width: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1c1914; border-radius: 3px; }
+
+/* ─── Animations ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.25; transform: scale(0.85); }
+}
+@keyframes shimmerGold {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+  50%      { box-shadow: 0 0 60px -10px rgba(212, 175, 55, 0.08); }
+}
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+.anim-fade-up { animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-fade { animation: fadeIn 0.7s ease-out both; }
+.anim-slide-down { animation: slideDown 0.4s ease-out both; }
+.anim-pulse-dot { animation: pulseDot 2s ease-in-out infinite; }
+.anim-glow { animation: glowPulse 4s ease-in-out infinite; }
+.anim-float { animation: subtleFloat 6s ease-in-out infinite; }
+
+.anim-shimmer {
+  background: linear-gradient(90deg, #D4AF37 0%, #f5e6a3 35%, #D4AF37 70%, #f5e6a3 100%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerGold 5s linear infinite;
+}
+
+.anim-overlay { animation: overlayIn 0.25s ease-out both; }
+.anim-modal { animation: modalIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ─── Stagger ─── */
+.stagger > * { opacity: 0; animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0.06s; }
+.stagger > *:nth-child(2) { animation-delay: 0.14s; }
+.stagger > *:nth-child(3) { animation-delay: 0.22s; }
+.stagger > *:nth-child(4) { animation-delay: 0.30s; }
+.stagger > *:nth-child(5) { animation-delay: 0.38s; }
+.stagger > *:nth-child(6) { animation-delay: 0.46s; }
+.stagger > *:nth-child(7) { animation-delay: 0.54s; }
+.stagger > *:nth-child(8) { animation-delay: 0.62s; }
+.stagger > *:nth-child(9) { animation-delay: 0.70s; }
+.stagger > *:nth-child(10) { animation-delay: 0.78s; }
+.stagger > *:nth-child(11) { animation-delay: 0.86s; }
+.stagger > *:nth-child(12) { animation-delay: 0.94s; }
+
+/* ─── Label utility ─── */
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  line-height: 1;
+}
+
+/* ─── Divider ─── */
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  width: 100%;
+}
+
+/* ─── Input styling ─── */
+.input-field {
+  width: 100%;
+  background-color: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 18px 22px;
+  color: var(--color-text-primary);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  outline: none;
+}
+.input-field::placeholder {
+  color: var(--color-text-faint);
+  font-style: italic;
+}
+.input-field:focus {
+  border-color: var(--color-border-focus);
+  background-color: #12100d;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.04);
+}
+
+/* Date input dark scheme */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5) sepia(1) saturate(0.3) hue-rotate(10deg);
+  cursor: pointer;
+}
+
+/* ─── Button ─── */
+.btn-primary {
+  width: 100%;
+  background-color: var(--color-gold);
+  color: #0d0b07;
+  font-weight: 600;
+  padding: 18px 24px;
+  border-radius: 12px;
+  border: none;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-mono);
+}
+.btn-primary:hover {
+  background-color: var(--color-gold-dim);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px -8px rgba(212, 175, 55, 0.25);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.99);
+}
